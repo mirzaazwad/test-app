@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+:root {
+  --customMagenta: #EB006F;
+  --customDarkBlue: #103686;
+  --customBlue: #3b6ce7;
+  --white: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif !important;
+  background-color: white !important;
+}

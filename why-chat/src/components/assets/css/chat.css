@@ -1,0 +1,20 @@
+.chatSenderImage{
+  border-radius: 50%;
+}
+
+.chatReceiverImage{
+  border-radius: 50%;
+}
+
+.chat-room{
+  width:100%;
+  height:auto;
+  display: flex;
+  overflow-x: hidden;
+}
+
+.custom-image-tile{
+  border-radius: 50%;
+}
+
+

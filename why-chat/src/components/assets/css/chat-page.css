@@ -1,0 +1,14 @@
+.chat-page {
+  position: absolute;
+  width: 74%;
+  left: 26%;
+  background: var(--white);
+  transition: 0.5s;
+  height:100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0% !important;
+}
+
