@@ -5,7 +5,6 @@ import { firestore } from "../config/firestore";
 
 export const useLogin=()=>{
   const [email,setEmail]=useState("");
-  const [username,setUsername]=useState("");
   const [passwordVisibility,setPasswordVisibility]=useState(false);
   const [password,setPassword]=useState("");
   const [error,setError]=useState("");
@@ -15,10 +14,12 @@ export const useLogin=()=>{
   const login=async(e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     try{
+      setLoading(true);
       loginWithEmailAndPassword(email,password);
       const document=await getDoc(doc(firestore,'users',email));
       const user=document.data();
       localStorage.setItem('user',JSON.stringify(user));
+      setLoading(false);
     }
     catch(err:any){
       if(err instanceof Error){

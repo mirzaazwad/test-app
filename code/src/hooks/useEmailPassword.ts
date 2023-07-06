@@ -6,9 +6,8 @@ export const useEmailPassword=()=>{
   const loginWithEmailAndPassword=(email:string,password:string)=>{
     signInWithEmailAndPassword(auth,email, password)
   .then((userCredential) => {
-    // Signed in 
     const user = userCredential.user;
-    // ...
+    localStorage.setItem('auth',JSON.stringify(user));
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -20,9 +19,8 @@ export const useEmailPassword=()=>{
   const signUpWithEmailPassword=(email:string,password:string)=>{
     createUserWithEmailAndPassword(auth,email, password)
   .then((userCredential) => {
-    // Signed in 
     const user = userCredential.user;
-    // ...
+    localStorage.setItem('auth',JSON.stringify(user));
   })
   .catch((error) => {
     const errorCode = error.code;

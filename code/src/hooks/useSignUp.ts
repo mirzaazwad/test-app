@@ -10,11 +10,12 @@ export const useSignUp=(password:string,confirmPassword:string,imageURL:string|u
   const [dob,setDOB]=useState<Date>();
   const [error,setError]=useState("");
   const [loading,setLoading]=useState(false);
-  const [disabled,setDisabled]=useState<boolean>(password!==confirmPassword);
+  const [disabled]=useState<boolean>(password!==confirmPassword);
   const {errorEmailPassword,signUpWithEmailPassword}=useEmailPassword();
   
 
   const signup=async(e:React.FormEvent<HTMLFormElement>)=>{
+    setLoading(true);
     e.preventDefault();
     await setDoc(doc(firestore, "users", email), {
       username: username,
@@ -36,6 +37,7 @@ export const useSignUp=(password:string,confirmPassword:string,imageURL:string|u
       imageURL:imageURL?imageURL:'customerProfilePicture.jpg'
     }));
     setError(errorEmailPassword);
+    setLoading(false);
   }
 
   return {email,setEmail,username,setUsername,dob,setDOB,signup,error,loading,disabled};

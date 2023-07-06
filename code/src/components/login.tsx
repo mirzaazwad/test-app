@@ -7,7 +7,7 @@ import { useGoogleContinue } from '../hooks/useGoogleContinue';
 
 const Login = ({changeState}:landingProps) => {
 
-  const {email,setEmail,password,setPassword,passwordVisibility,setPasswordVisibility,error,login}=useLogin();
+  const {email,setEmail,password,setPassword,passwordVisibility,setPasswordVisibility,error,loading,login}=useLogin();
   const {signInWithGoogle,errorGoogle}=useGoogleContinue();
   return (
     <div className="flex flex-row-reverse">
@@ -51,7 +51,7 @@ const Login = ({changeState}:landingProps) => {
               </InputGroup.Text>
             </InputGroup>
             <div className="flex justify-center">
-        <Button className="rounded-lg text-white w-1/2 bg-blue-500" type="submit">Login</Button>
+        <Button className="rounded-lg text-white w-1/2 bg-blue-500" disabled={loading} type="submit">Login</Button>
         </div>
           </Form>
           <p className="mt-4">
@@ -59,7 +59,7 @@ const Login = ({changeState}:landingProps) => {
           </p>
         </Card.Body>
         <Card.Footer className='flex justify-center p-4'>
-          <Button className="rounded-lg text-white flex-justify-center bg-blue-500" onClick={()=>{
+          <Button className="rounded-lg text-white flex-justify-center bg-blue-500" disabled={loading} onClick={()=>{
             signInWithGoogle();
             }}>
             <IonIcon icon={logoGoogle} />

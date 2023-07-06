@@ -94,7 +94,7 @@ const SignUp = ({changeState}:landingProps) => {
           aria-label="dob" id="dob"  autoComplete='off'></Form.Control>
         </InputGroup>
         <div className="flex justify-center">
-        <Button className="rounded-lg text-white p-2 w-1/2 bg-blue-500" type="submit" disabled={disabled}>Sign Up</Button>
+        <Button className="rounded-lg text-white p-2 w-1/2 bg-blue-500" type="submit" disabled={disabled||loading}>Sign Up</Button>
         </div>
         </Form>
         <p className="mt-4">
@@ -103,7 +103,7 @@ const SignUp = ({changeState}:landingProps) => {
         
       </Card.Body>
       <Card.Footer className='flex justify-center p-4'>
-          <Button className="rounded-lg text-white p-2 flex-justify-center bg-blue-500"  onClick={()=>{
+          <Button className="rounded-lg text-white p-2 flex-justify-center bg-blue-500" disabled={loading} onClick={()=>{
             signInWithGoogle();
             }}>
             <IonIcon icon={logoGoogle} />

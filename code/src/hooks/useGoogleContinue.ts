@@ -10,6 +10,7 @@ export const useGoogleContinue=()=>{
   .then(async(result) => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential?.accessToken;
+    localStorage.setItem('token',JSON.stringify(token));
     const user = result.user;
     const email=user?.email;
     if(email){
