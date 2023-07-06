@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useEmailPassword } from "./useEmailPassword";
-import { collection, doc, getDoc, query, where } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { firestore } from "../config/firestore";
 
 export const useLogin=()=>{

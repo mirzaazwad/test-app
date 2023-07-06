@@ -1,7 +1,4 @@
-import { useContext, useState } from "react";
-import { Send } from "react-bootstrap-icons";
-import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router";
+import { useContext } from "react";
 import { IonIcon } from "@ionic/react";
 import { sendSharp } from "ionicons/icons";
 import './assets/css/send-message.css';

@@ -1,5 +1,5 @@
-import { collection, getDocs, onSnapshot, or, orderBy, query, where } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { collection, onSnapshot, or, orderBy, query, where } from "firebase/firestore";
+import { useState } from "react";
 import { firestore } from "../config/firestore";
 
 export const useChatSender=()=>{
