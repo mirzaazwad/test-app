@@ -7,7 +7,7 @@ import { useGoogleContinue } from '../hooks/useGoogleContinue';
 
 const Login = ({changeState}:landingProps) => {
 
-  const {email,setEmail,password,setPassword,passwordVisibility,setPasswordVisibility,error,loading,login}=useLogin();
+  const {email,setEmail,password,setPassword,passwordVisibility,setPasswordVisibility,error,login}=useLogin();
   const {signInWithGoogle,errorGoogle}=useGoogleContinue();
   return (
     <div className="flex flex-row-reverse">
@@ -16,7 +16,7 @@ const Login = ({changeState}:landingProps) => {
         <Card.Body className='p-4'>
           <Form className='w-full' onSubmit={login}>
             <div className="errorBox">
-              {error}
+              {error||errorGoogle}
             </div>
             <InputGroup className='mb-3'>
               <InputGroup.Text>
@@ -46,7 +46,7 @@ const Login = ({changeState}:landingProps) => {
                 className='w-3/4'
                 autoComplete="on"
               />
-              <InputGroup.Text>
+              <InputGroup.Text onClick={()=>setPasswordVisibility(!passwordVisibility)}>
               <IonIcon icon={passwordVisibility?eyeOutline:eyeOffOutline}></IonIcon>
               </InputGroup.Text>
             </InputGroup>
