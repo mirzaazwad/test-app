@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap"
-import { auth } from "../context/firestore"
+import { auth } from "../config/firestore"
 
 export const SignOut=()=>{
   return auth.currentUser && (

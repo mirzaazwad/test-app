@@ -1,10 +1,10 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../context/firestore";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config/firestore";
 import { useState } from "react";
 export const useEmailPassword=()=>{
   const [errorEmailPassword,setError]=useState("");
-  const signInWithEmailAndPassword=(email:string,password:string)=>{
-    createUserWithEmailAndPassword(auth, email, password)
+  const loginWithEmailAndPassword=(email:string,password:string)=>{
+    signInWithEmailAndPassword(auth,email, password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
@@ -16,5 +16,19 @@ export const useEmailPassword=()=>{
     setError(`${errorCode}:${errorMessage}`);
   });
   }
-  return {signInWithEmailAndPassword,errorEmailPassword};
+
+  const signUpWithEmailPassword=(email:string,password:string)=>{
+    createUserWithEmailAndPassword(auth,email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setError(`${errorCode}:${errorMessage}`);
+  });
+  }
+  return {loginWithEmailAndPassword,errorEmailPassword,signUpWithEmailPassword};
 }

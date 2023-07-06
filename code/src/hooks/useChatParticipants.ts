@@ -1,22 +1,26 @@
 import { collection, getDocs, query } from "firebase/firestore";
-import { firestore } from "../context/firestore";
+import { firestore } from "../config/firestore";
 import { useEffect, useState } from "react";
 
-export const useChatParticipants=()=>{
-  const messagesRef = collection(firestore,'users');
-  const q=query(messagesRef);
-  const [sender,setSender]=useState<any>([]);
-  useEffect(()=>{
-    const getSender=async()=>{
-      const data=await getDocs(q);
-      setSender(data.docs.map(doc=>doc.data()));
-    }
+export const useChatParticipants = () => {
+  const usersRef = collection(firestore, 'users');
+  const q = query(usersRef);
+  const [sender, setSender] = useState<any[]>([]);
+  useEffect(() => {
+    const getSender = async () => {
+      const data = await getDocs(q);
+      setSender(data.docs.map((doc) => doc.data()));
+    };
     getSender();
-  },[])
-  const [search,setSearch]=useState('');
-  const filteredSender=search!==""?sender.filter((send:any)=>{search.toLowerCase().match(send.username.toLowerCase())}):sender;
-  
-  
+  }, []);
+  const [SearchTerm, setSearchTerm] = useState('');
+  const [filteredSender, setFilteredSender] = useState<any>([]);
+  useEffect(() => {
+    const filteredSender = (sender.length > 0 && SearchTerm !== '')
+      ? sender.filter((send: any) => send.username.toLowerCase().includes(SearchTerm.toLowerCase()))
+      : sender;
+    setFilteredSender(filteredSender);
+  }, [SearchTerm, sender]);
 
-  return {filteredSender,search,setSearch};
-}
+  return { filteredSender, SearchTerm, setSearchTerm };
+};

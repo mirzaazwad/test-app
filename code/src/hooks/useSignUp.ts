@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react"
-import { firestore } from "../context/firestore";
+import { firestore } from "../config/firestore";
 import { useEmailPassword } from "./useEmailPassword";
 
 export const useSignUp=(password:string,confirmPassword:string,imageURL:string|undefined)=>{
@@ -11,7 +11,7 @@ export const useSignUp=(password:string,confirmPassword:string,imageURL:string|u
   const [error,setError]=useState("");
   const [loading,setLoading]=useState(false);
   const [disabled,setDisabled]=useState<boolean>(password!==confirmPassword);
-  const {signInWithEmailAndPassword,errorEmailPassword}=useEmailPassword();
+  const {errorEmailPassword,signUpWithEmailPassword}=useEmailPassword();
   
 
   const signup=async(e:React.FormEvent<HTMLFormElement>)=>{
@@ -28,7 +28,13 @@ export const useSignUp=(password:string,confirmPassword:string,imageURL:string|u
     if(error!==""){
       return;
     }
-    signInWithEmailAndPassword(email,password);
+    signUpWithEmailPassword(email,password);
+    localStorage.setItem('user',JSON.stringify({
+      username: username,
+      email:email,
+      dob:dob,
+      imageURL:imageURL?imageURL:'customerProfilePicture.jpg'
+    }));
     setError(errorEmailPassword);
   }
 

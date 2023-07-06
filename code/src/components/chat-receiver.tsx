@@ -1,7 +1,9 @@
+import { Timestamp } from "firebase/firestore";
+
 type ChatReceiverProps={
   imageURL:string,
   message:string,
-  datetime:Date
+  datetime:Timestamp
 }
 
 const ChatReceiver = ({imageURL,message,datetime}:ChatReceiverProps) => {
@@ -15,7 +17,7 @@ const ChatReceiver = ({imageURL,message,datetime}:ChatReceiverProps) => {
           {message}
         </p>
         <p className="small me-3 mb-3 rounded-3 text-muted">
-          {datetime.toLocaleDateString()}
+          {datetime?datetime.toDate().toDateString():""}
         </p>
       </div>
       <img

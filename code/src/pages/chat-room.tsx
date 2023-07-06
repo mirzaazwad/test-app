@@ -10,15 +10,15 @@ import { ChatContext } from "../context/chat-context";
 
 
 const ChatPharmacy = () => {
-  const {senderEmail,messages,setSenderEmail}=useChatSender();
+  const {senderEmail,senderImageURL,messages,setSenderEmail,setSenderImageURL}=useChatSender();
   return ( 
-  <ChatContext.Provider value={{senderEmail:senderEmail,setSenderEmail:setSenderEmail,messages}}>
+  <ChatContext.Provider value={{senderEmail,setSenderEmail,messages,senderImageURL,setSenderImageURL}}>
     <div className="chat-room">
     <Navbar page="chat"/>
     <ChatTile/>
     <div className="chat-page">
     <ChatBox/>
-    <SendMessageChatRoom imageURL="/customerProfilePicture.jpg" senderID="123" receiverID="1234"/>
+    <SendMessageChatRoom/>
   </div> 
   </div>
   </ChatContext.Provider>

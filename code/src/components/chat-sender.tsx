@@ -1,7 +1,9 @@
+import { Timestamp } from "firebase/firestore";
+
 type ChatSenderProps={
   imageURL:string,
   message:string|undefined,
-  datetime:Date
+  datetime:Timestamp
 }
 
 const ChatSender = ({imageURL,message,datetime}:ChatSenderProps) => {
@@ -21,7 +23,7 @@ const ChatSender = ({imageURL,message,datetime}:ChatSenderProps) => {
           {message}
         </p>
         <p className="small ms-3 mb-3 rounded-3 text-muted float-end">
-          {datetime.toLocaleDateString()}
+          {datetime?datetime.toDate().toDateString():""}
         </p>
       </div>
     </div>

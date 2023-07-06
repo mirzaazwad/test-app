@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useEmailPassword } from "./useEmailPassword";
+import { collection, doc, getDoc, query, where } from "firebase/firestore";
+import { firestore } from "../config/firestore";
 
 export const useLogin=()=>{
   const [email,setEmail]=useState("");
@@ -8,13 +10,15 @@ export const useLogin=()=>{
   const [password,setPassword]=useState("");
   const [error,setError]=useState("");
   const [loading,setLoading]=useState(false);
-  const {signInWithEmailAndPassword,errorEmailPassword}=useEmailPassword();
-  
+  const {loginWithEmailAndPassword,errorEmailPassword}=useEmailPassword();
 
-  const login=(e:React.FormEvent<HTMLFormElement>)=>{
+  const login=async(e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     try{
-      signInWithEmailAndPassword(email,password);
+      loginWithEmailAndPassword(email,password);
+      const document=await getDoc(doc(firestore,'users',email));
+      const user=document.data();
+      localStorage.setItem('user',JSON.stringify(user));
     }
     catch(err:any){
       if(err instanceof Error){

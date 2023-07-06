@@ -1,4 +1,3 @@
-import { Badge } from "react-bootstrap";
 import users from "./assets/ts/users";
 import { useContext } from "react";
 import { ChatContext } from "../context/chat-context";
@@ -6,11 +5,11 @@ import { ChatContext } from "../context/chat-context";
 
 
 const ChatTileElement = ({email,imageURL,username}:users) => {
-  const senderEmail=useContext(ChatContext);
+  const sender=useContext(ChatContext);
   return ( 
     <li className="p-2 border-bottom" key={email} onClick={()=>{
-      senderEmail?.setSenderEmail(email);
-      alert(senderEmail);
+      sender?.setSenderEmail(email);
+      sender?.setSenderImageURL(imageURL);
       }}>
      
       <div className="d-flex justify-content-between">

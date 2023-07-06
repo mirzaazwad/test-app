@@ -6,23 +6,12 @@ import { ChatContext } from "../context/chat-context";
 
 const ChatBox = () => {
   const sender=useContext(ChatContext);
+  const messages=sender?.messages;
   return ( 
   <div className="chat-box">
-    <ChatSender imageURL='/brokenProfilePicture.jpg' message="hello123" datetime={new Date()}/>
-    <ChatReceiver imageURL='/customerProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatSender imageURL='/brokenProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatReceiver imageURL='/customerProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatSender imageURL='/brokenProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatReceiver imageURL='/customerProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatSender imageURL='/brokenProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatReceiver imageURL='/customerProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatSender imageURL='/brokenProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatReceiver imageURL='/customerProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatSender imageURL='/brokenProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatReceiver imageURL='/customerProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatSender imageURL='/brokenProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatReceiver imageURL='/customerProfilePicture.jpg' message="hello" datetime={new Date()}/>
-    <ChatSender imageURL='/brokenProfilePicture.jpg' message={sender?.senderEmail} datetime={new Date()}/>
+    {messages?.map((message)=>(
+      message.from===sender?.senderEmail?<ChatSender imageURL={message?.receiverImageURL?message.receiverImageURL:'/customerProfilePicture.jpg'} message={message.messages} datetime={message.createdAt}/>:<ChatReceiver imageURL={message?.senderImageURL!==""?message.senderImageURL:'/customerProfilePicture.jpg'}  message={message.messages} datetime={message.createdAt}/>
+    ))}
   </div> 
   );
 }
