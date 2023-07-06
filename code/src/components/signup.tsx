@@ -4,10 +4,20 @@ import { calendarNumberOutline,eyeOffOutline, eyeOutline, lockClosedOutline, log
 import landingProps from './assets/ts/landingProps';
 import { useSignUp } from '../hooks/useSignUp';
 import { usePasswordSignUp } from '../hooks/usePasswordSignUp';
+import { useImageUpload } from '../hooks/useImageUpload';
+import ImageInput from './image-input';
+import { useGoogleContinue } from '../hooks/useGoogleContinue';
 
 const SignUp = ({changeState}:landingProps) => {
   const {password,handlePasswordChange,confirmPassword,handleConfirmPasswordChange,passwordError,cfError,passwordVisibility,setPasswordVisibility,confirmPasswordVisibility,setConfirmPasswordVisibility}=usePasswordSignUp();
-  const {email,setEmail,username,setUsername,dob,setDOB,signup,error,loading,disabled}=useSignUp(password,confirmPassword);
+  const { imageURL, setImage, errorImage, upload_image } = useImageUpload(
+    "/customerProfilePicture.jpg"
+    );
+  const {email,setEmail,username,setUsername,dob,setDOB,signup,error,loading,disabled}=useSignUp(password,confirmPassword,imageURL);
+  const {signInWithGoogle,errorGoogle}=useGoogleContinue();
+
+  const maxDate=new Date();
+  maxDate.setFullYear(maxDate.getFullYear()-13);
   return ( 
     <div className="flex flex-row-reverse">
       <Card className="w-1/4 bg-white mt-4 me-36">
@@ -15,7 +25,18 @@ const SignUp = ({changeState}:landingProps) => {
       <Card.Body className='p-4'>
         <Form className='w-full' onSubmit={signup}>
         <div className="errorBox">
+            {errorImage}
+          </div>
+        <ImageInput
+              imageURL={imageURL}
+              setImage={setImage}
+              upload_image={upload_image}
+            />
+        <div className="errorBox">
             {error}
+          </div>
+          <div className="errorBox">
+            { errorGoogle}
           </div>
          <InputGroup className='p-2'>
           <InputGroup.Text>
@@ -65,8 +86,9 @@ const SignUp = ({changeState}:landingProps) => {
           <InputGroup.Text>
             <IonIcon icon={calendarNumberOutline}></IonIcon>
           </InputGroup.Text>
+          
           <Form.Control type="date" className='w-10/12' required
-          max={new Date().toISOString().split('T')[0]}
+          max={maxDate.toISOString().split('T')[0]}
           value={dob?.toISOString().split('T')[0]}
           onChange={(e)=>setDOB(new Date(e.target.value))}
           aria-label="dob" id="dob"  autoComplete='off'></Form.Control>
@@ -81,7 +103,9 @@ const SignUp = ({changeState}:landingProps) => {
         
       </Card.Body>
       <Card.Footer className='flex justify-center p-4'>
-          <Button className="rounded-lg text-white p-2 flex-justify-center bg-blue-500">
+          <Button className="rounded-lg text-white p-2 flex-justify-center bg-blue-500"  onClick={()=>{
+            signInWithGoogle();
+            }}>
             <IonIcon icon={logoGoogle} />
             Continue with Google
           </Button>

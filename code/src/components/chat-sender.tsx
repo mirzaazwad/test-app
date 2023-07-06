@@ -1,6 +1,6 @@
 type ChatSenderProps={
   imageURL:string,
-  message:string,
+  message:string|undefined,
   datetime:Date
 }
 

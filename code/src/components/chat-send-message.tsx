@@ -14,7 +14,6 @@ type SendMessageChatRoomProps={
 
 const SendMessageChatRoom = ({imageURL,senderID,receiverID}:SendMessageChatRoomProps) => {
   const [message, setMessage] = useState("");
-  const navigate=useNavigate();
   const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
 
   };
@@ -36,7 +35,7 @@ const SendMessageChatRoom = ({imageURL,senderID,receiverID}:SendMessageChatRoomP
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <button style={{backgroundColor:"var(--customDarkBlue)",color:"whitesmoke",width:'10%'}}><IonIcon icon={sendSharp}></IonIcon></button>
+      <button style={{backgroundColor:"var(--customDarkBlue)",color:"whitesmoke",width:'10%'}} disabled={message===""}><IonIcon icon={sendSharp}></IonIcon></button>
       </div>
     </form>
   );

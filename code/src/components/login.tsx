@@ -3,17 +3,21 @@ import { IonIcon } from '@ionic/react';
 import { eyeOutline,eyeOffOutline, lockClosedOutline, logoGoogle, mailUnreadOutline } from 'ionicons/icons';
 import landingProps from './assets/ts/landingProps';
 import { useLogin } from '../hooks/useLogin';
+import { useGoogleContinue } from '../hooks/useGoogleContinue';
 
 const Login = ({changeState}:landingProps) => {
 
   const {email,setEmail,password,setPassword,passwordVisibility,setPasswordVisibility,error,loading,login}=useLogin();
-
+  const {signInWithGoogle,errorGoogle}=useGoogleContinue();
   return (
     <div className="flex flex-row-reverse">
       <Card className="w-1/4 bg-white mt-28 me-36">
         <Card.Header style={{color:"var(--customDarkBlue)",fontSize:'28px',textAlign:'center'}}>Login</Card.Header>
         <Card.Body className='p-4'>
           <Form className='w-full' onSubmit={login}>
+            <div className="errorBox">
+              {error}
+            </div>
             <InputGroup className='mb-3'>
               <InputGroup.Text>
                 <IonIcon icon={mailUnreadOutline} />
@@ -55,7 +59,9 @@ const Login = ({changeState}:landingProps) => {
           </p>
         </Card.Body>
         <Card.Footer className='flex justify-center p-4'>
-          <Button className="rounded-lg text-white flex-justify-center bg-blue-500">
+          <Button className="rounded-lg text-white flex-justify-center bg-blue-500" onClick={()=>{
+            signInWithGoogle();
+            }}>
             <IonIcon icon={logoGoogle} />
             Continue with Google
           </Button>

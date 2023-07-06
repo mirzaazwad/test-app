@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import {getDatabase} from "firebase/database";
 import {GoogleAuthProvider,getAuth,signInWithPopup,signInWithEmailAndPassword,createUserWithEmailAndPassword,sendPasswordResetEmail,signOut} from "firebase/auth";
 import {getFirestore,query,getDocs,collection,where,addDoc} from "firebase/firestore";
 
@@ -16,4 +17,6 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
-export const firestore = getFirestore(app);
+export const firestore = getFirestore();
+export const db = getDatabase();
+export const provider = new GoogleAuthProvider();

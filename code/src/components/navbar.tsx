@@ -1,6 +1,6 @@
 import { IonIcon } from "@ionic/react";
 import { chatboxEllipsesSharp } from 'ionicons/icons';
-import { Button } from "react-bootstrap";
+import { SignOut } from "./sign-out";
 
 interface NavbarProps {
   page: string;
@@ -16,7 +16,7 @@ const Navbar = ({ page }: NavbarProps) => {
         <h3>Why Chat</h3>
       </div>
       {page==="chat" && (<div className="ms-auto mt-2 me-6">
-        <Button variant="primary">Log Out</Button>
+        <SignOut/>
       </div>)}
     </div>
   );
