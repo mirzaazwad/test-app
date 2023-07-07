@@ -1,24 +1,30 @@
-const request = require('supertest');
-const { app, server } = require('../index');
+// database.test.js
 
-describe('API Routes', () => {
-  it('Test #1', async () => {
-      const response = await request(app).get('/');
-      expect(response.status).toBe(200);
-      expect(response.text).toBe('Ken KAAJ KORTESENA AAAAAAAAAAAAAAAA 😭😢');
+require('dotenv').config({ path: './config.env' });
+const { MongoClient } = require('mongodb');
+
+describe('Database Connection', () => {
+  let connection;
+  let db;
+
+  beforeAll(async () => {
+    const uri = process.env.MONGO_URI;
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    connection = await client.connect();
+    db = connection.db();
   });
 
-  it('Test #2', async () => {
-      const response = await request(app).get('/hello');
-      expect(response.status).toBe(200);
-      expect(response.text).toBe('Bye World');
+  afterAll(async () => {
+    await connection.close();
   });
-  it('Test #3', async () => {
-    const response = await request(app).get('/nafisa');
-    expect(response.status).toBe(200);
-    expect(response.text).toBe('Nafisa is successful');
-});
-});
-afterAll((done) => {
-  server.close(done);
+
+  test('should connect to the MongoDB database', async () => {
+    expect(connection.topology.isConnected()).toBe(true);
+  });
+
+  test('should access a collection in the database', async () => {
+    const collection = db.collection('user');
+    const documents = await collection.find({}).toArray();
+    expect(documents).toHaveLength(1); // assuming the collection is initially empty
+  });
 });
