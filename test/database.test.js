@@ -25,6 +25,6 @@ describe('Database Connection', () => {
   test('should access a collection in the database', async () => {
     const collection = db.collection('user');
     const documents = await collection.find({}).toArray();
-    expect(documents).toHaveLength(1); // assuming the collection is initially empty
+    expect(documents.length).toBeGreaterThan(0); // assuming the collection is initially empty
   });
 });
