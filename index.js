@@ -27,7 +27,7 @@ app.get("/nafisa", (req, res) => {
 
 app.set("view engine", "ejs");
 //Routes
-app.use("/", require("./routes/login"));
+app.use("/", require("./routes/login.route"));
 
 
 //js

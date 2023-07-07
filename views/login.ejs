@@ -15,19 +15,21 @@
     <div class="hero min-h-screen bg-base-200">
       <div class="hero-content flex-row-reverse">
         <div class="text-center lg:text-left">
-          <h1 class="text-5xl font-bold text-center">Login </h1>
+          <h1 class="text-5xl font-bold text-center">Login</h1>
           <p class="py-4 w-3/4 mx-auto text-center">
-            Login to explore! See our CI/CD stuff we struggled to make. Tailwind is awesome!
+            Login to explore! See our CI/CD stuff we struggled to make. Tailwind
+            is awesome!
           </p>
         </div>
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div class="card-body">
+          <form class="card-body" method="post" action="/login">
             <div class="form-control">
               <label class="label">
                 <span class="label-text">Email</span>
               </label>
               <input
                 type="text"
+                name="email"
                 placeholder="email"
                 class="input input-bordered"
               />
@@ -38,6 +40,7 @@
               </label>
               <input
                 type="text"
+                name="password"
                 placeholder="password"
                 class="input input-bordered"
               />
@@ -47,10 +50,17 @@
                 >
               </label>
             </div>
-            <div class="form-control mt-6">
-              <button class="btn btn-primary">Login</button>
+            <label class="label">
+              <a
+                href="/register"
+                class="label-text-alt link link-hover text-center mx-auto"
+                >New here? Sign up</a
+              >
+            </label>
+            <div class="form-control">
+              <button class="btn btn-primary submit">Login</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
