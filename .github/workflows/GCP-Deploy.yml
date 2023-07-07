@@ -11,7 +11,7 @@ jobs:
     name: Setup Gcloud Account
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
+      IMAGE_NAME: gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$GITHUB_SHA
     steps:
       - name: Login
         uses: google-github-actions/setup-gcloud@v0
