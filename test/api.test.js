@@ -1,11 +1,12 @@
 const request = require('supertest');
 const { app, server } = require('../index');
+const connectDB = require("../middleware/db");
 
 describe('API Routes', () => {
   it('Test #1', async () => {
       const response = await request(app).get('/');
       expect(response.status).toBe(200);
-      expect(response.text).toBe('Ken KAAJ KORTE something 🤧');
+      expect(response.text).toBe('Ken KAAJ KORTESE NA 🤧');
   });
 
   it('Test #2', async () => {

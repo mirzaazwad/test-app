@@ -1,6 +1,6 @@
 // database.test.js
 
-require('dotenv').config({ path: './config.env' });
+require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
 describe('Database Connection', () => {
