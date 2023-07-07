@@ -5,7 +5,7 @@ describe('API Routes', () => {
   it('Test #1', async () => {
       const response = await request(app).get('/');
       expect(response.status).toBe(200);
-      expect(response.text).toBe('Ken KAAJ KORTESENA AAAAAAAAAAAAAAAA 😭😢');
+      expect(response.text).toBe('Ken KAAJ KORTE kisuta 🤧');
   });
 
   it('Test #2', async () => {
