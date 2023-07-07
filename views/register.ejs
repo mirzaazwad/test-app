@@ -22,13 +22,14 @@
           </p>
         </div>
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form id="registerForm" class="card-body registerForm">
+          <form id="registerForm" class="card-body registerForm" method="post" action="/register">
             <div class="form-control">
               <label class="label">
                 <span class="label-text">Name</span>
               </label>
               <input
-                id="nameInput"
+                id="name"
+                name="name"
                 type="text"
                 placeholder="Name"
                 class="input input-bordered"
@@ -39,7 +40,8 @@
                 <span class="label-text">Email</span>
               </label>
               <input
-                id="emailInput"
+                id="email"
+                name="email"
                 type="text"
                 placeholder="Email"
                 class="input input-bordered"
@@ -51,7 +53,8 @@
                 <span class="label-text">Password</span>
               </label>
               <input
-                id="passwordInput"
+                id="password"
+                name="password"
                 type="password"
                 placeholder="Password"
                 class="input input-bordered"
@@ -62,7 +65,8 @@
                 <span class="label-text">Confirm Password</span>
               </label>
               <input
-                id="confirmPasswordInput"
+                id="confirmPassword"
+                name="confirmPassword"
                 type="password"
                 placeholder="Confirm Password"
                 class="input input-bordered"
@@ -82,56 +86,13 @@
               >
             </label>
             <div class="form-control">
-              <button class="btn btn-primary">Register</button>
+              <button class="btn btn-primary submit">Register</button>
             </div>
           </form>
         </div>
       </div>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Get a reference to the form
-        const form = document.getElementById("registerForm");
-
-        // Add submit event listener to the form
-        form.addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent form submission
-
-          // Get form data
-          const name = document.getElementById("nameInput").value;
-          const email = document.getElementById("emailInput").value;
-          const password = document.getElementById("passwordInput").value;
-          const confirmPassword = document.getElementById(
-            "confirmPasswordInput"
-          ).value;
-
-          // Create an object with the form data
-          const formData = {
-            name: name,
-            email: email,
-            password: password,
-            confirmPassword: confirmPassword,
-          };
-          console.log(formData);
-          // Make an HTTP POST request to the server
-          fetch("/register", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              // Handle the server response
-              console.log(data);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        });
-      });
-    </script>
+    
   </body>
 </html>
