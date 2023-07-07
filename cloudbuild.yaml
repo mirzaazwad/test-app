@@ -11,4 +11,4 @@ steps:
            'gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$SHORT_SHA']
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['beta','run','deploy', 'team-nan-9620011412001','--region=global (non-regional)','--platform=managed','--image=gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$SHORT_SHA']
+    args: ['beta','run','deploy', 'team-nan-9620011412001','--region=global(non-regional)','--platform=managed','--image=gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$SHORT_SHA']
