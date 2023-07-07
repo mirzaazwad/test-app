@@ -34,8 +34,6 @@ app.use("/", require("./routes/login.route"));
 //BodyParsing
 app.use(express.urlencoded({extended: false}));
 
-const server = app.listen(port, () => {
-});
 
 module.exports = {
   app,

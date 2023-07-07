@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
+const { app, server } = require("../index");
 
 describe('Database Connection', () => {
   let connection;
@@ -16,6 +17,7 @@ describe('Database Connection', () => {
 
   afterAll(async () => {
     await connection.close();
+    server.close();
   });
 
   test('should connect to the MongoDB database', async () => {
