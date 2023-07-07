@@ -1,4 +1,4 @@
-name: Docker
+name: Google Cloud Platform Deploy
 
 on:
   push:
