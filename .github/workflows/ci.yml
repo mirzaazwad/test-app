@@ -24,7 +24,7 @@ jobs:
         run: npm install
   
       - name: Set up environment variables
-        run: echo "MONGO_URI=${{ vars.MONGO_URI }}" >> $GITHUB_ENV
+        run: echo "MONGO_URI=${{ vars._MONGO_URI }}" >> $GITHUB_ENV
 
       - name: Run tests
         run: npm run test
