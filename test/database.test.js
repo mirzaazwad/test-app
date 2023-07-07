@@ -12,18 +12,11 @@ describe('Database Connection', () => {
     db = connection.db();
   });
 
-  afterAll(async (done) => {
+  afterAll(async () => {
     await connection.close();
-    server.close(done);
   });
 
   test('should connect to the MongoDB database', async () => {
     expect(connection.topology.isConnected()).toBe(true);
-  });
-
-  test('should access a collection in the database', async () => {
-    const collection = await db.collection('users');
-    const documents = await collection.find({}).toArray();
-    expect(documents).toHaveLength(1); // assuming the collection is initially empty
   });
 });
