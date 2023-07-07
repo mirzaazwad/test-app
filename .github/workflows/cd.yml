@@ -23,4 +23,6 @@ jobs:
 
       - name: Deploy to VM
         run: |
-          sudo docker-compose down -v && sudo docker-compose up -d --build
+          docker-compose --version
+          docker-compose -f ./test-app/docker-compose.yml down -v
+          docker-compose -f ./test-app/docker-compose.yml up -d --build
