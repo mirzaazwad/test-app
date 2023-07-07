@@ -35,7 +35,7 @@ app.use("/", require("./routes/login.route"));
 app.use(express.urlencoded({extended: false}));
 
 const server = app.listen(port, () => {
-  console.log(`Server is running`);
+  
 });
 
 module.exports = {
