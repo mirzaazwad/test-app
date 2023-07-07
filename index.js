@@ -24,6 +24,11 @@ app.set("view engine", "ejs");
 //Routes
 app.use("/", require("./routes/login"));
 
+
+//js
+//BodyParsing
+app.use(express.urlencoded({extended: false}));
+
 const server = app.listen(port, () => {
   console.log(`Server is running`);
 });

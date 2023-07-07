@@ -22,12 +22,13 @@
           </p>
         </div>
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div class="card-body">
+          <form id="registerForm" class="card-body registerForm">
             <div class="form-control">
               <label class="label">
                 <span class="label-text">Name</span>
               </label>
               <input
+                id="nameInput"
                 type="text"
                 placeholder="Name"
                 class="input input-bordered"
@@ -38,6 +39,7 @@
                 <span class="label-text">Email</span>
               </label>
               <input
+                id="emailInput"
                 type="text"
                 placeholder="Email"
                 class="input input-bordered"
@@ -49,26 +51,28 @@
                 <span class="label-text">Password</span>
               </label>
               <input
-                type="text"
+                id="passwordInput"
+                type="password"
                 placeholder="Password"
                 class="input input-bordered"
               />
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Confirm Password</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Confirm Password"
-                  class="input input-bordered"
-                />
-              </div>
-              <label class="label">
-                <a href="#" class="label-text-alt link link-hover"
-                  >Forgot password?</a
-                >
-              </label>
             </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Confirm Password</span>
+              </label>
+              <input
+                id="confirmPasswordInput"
+                type="password"
+                placeholder="Confirm Password"
+                class="input input-bordered"
+              />
+            </div>
+            <label class="label">
+              <a href="#" class="label-text-alt link link-hover"
+                >Forgot password?</a
+              >
+            </label>
 
             <label class="label">
               <a
@@ -80,9 +84,54 @@
             <div class="form-control">
               <button class="btn btn-primary">Register</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get a reference to the form
+        const form = document.getElementById("registerForm");
+
+        // Add submit event listener to the form
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          // Get form data
+          const name = document.getElementById("nameInput").value;
+          const email = document.getElementById("emailInput").value;
+          const password = document.getElementById("passwordInput").value;
+          const confirmPassword = document.getElementById(
+            "confirmPasswordInput"
+          ).value;
+
+          // Create an object with the form data
+          const formData = {
+            name: name,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+          };
+          console.log(formData);
+          // Make an HTTP POST request to the server
+          fetch("/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              // Handle the server response
+              console.log(data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
+      });
+    </script>
   </body>
 </html>
