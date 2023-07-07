@@ -8,7 +8,7 @@ describe('Database Connection', () => {
   let db;
 
   beforeAll(async () => {
-    const uri = process.env.MONGO_URI;
+    const uri = process.env._MONGO_URI;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     connection = await client.connect();
     db = connection.db();
