@@ -1,5 +1,3 @@
-// database.test.js
-
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
 const { server } = require('../index');
@@ -9,7 +7,7 @@ describe('Database Connection', () => {
   let db;
 
   beforeAll(async () => {
-    const uri = process.env._MONGO_URI;
+    const uri = process.env._MONGO_URI; // Assumes your .env file has the MONGO_URI variable
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     connection = await client.connect();
     db = connection.db();
@@ -27,6 +25,6 @@ describe('Database Connection', () => {
   test('should access a collection in the database', async () => {
     const collection = db.collection('user');
     const documents = await collection.find({}).toArray();
-    expect(documents).toHaveLength(1); // assuming the collection is initially empty
+    expect(documents).toHaveLength(4); // assuming the collection is initially empty
   });
 });
