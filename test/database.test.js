@@ -15,9 +15,9 @@ describe('Database Connection', () => {
     db = connection.db();
   });
 
-  afterAll(async () => {
+  afterAll(async (done) => {
     await connection.close();
-    server.close();
+    server.close(done);
   });
 
   test('should connect to the MongoDB database', async () => {
@@ -25,7 +25,7 @@ describe('Database Connection', () => {
   });
 
   test('should access a collection in the database', async () => {
-    const collection = db.collection('users');
+    const collection = await db.collection('users');
     const documents = await collection.find({}).toArray();
     expect(documents).toHaveLength(2); // assuming the collection is initially empty
   });
