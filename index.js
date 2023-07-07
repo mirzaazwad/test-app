@@ -12,6 +12,10 @@ app.get('/hello',(req,res)=>{
   res.send('Bye World');
 })
 
+app.get('/nafisa',(req,res)=>{
+  res.send('Nafisa is successful');
+})
+
 const server=app.listen(port, () => {
   console.log(`Server is running`);
 });
