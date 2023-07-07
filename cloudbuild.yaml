@@ -11,16 +11,4 @@ steps:
            'gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$SHORT_SHA']
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['beta','run','deloy', 'team-nan-9620011412001','--region=global (non-regional)','--platform=managed','--image=gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$SHORT_SHA']
-
-  # Entrypoint, timeout and environment variables
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    timeout: 240s
-    args: ['compute', 'instances', 
-           'create-with-container', 'my-vm-name',
-           '--container-image', 
-           'gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$SHORT_SHA']
-    env:
-      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
-      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+    args: ['beta','run','deploy', 'team-nan-9620011412001','--region=global (non-regional)','--platform=managed','--image=gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$SHORT_SHA']
