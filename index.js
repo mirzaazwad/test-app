@@ -27,16 +27,13 @@ app.get("/nafisa", (req, res) => {
 
 app.set("view engine", "ejs");
 //Routes
-app.use("/", require("./routes/login"));
+app.use("/", require("./routes/login.route"));
 
 
 //js
 //BodyParsing
 app.use(express.urlencoded({extended: false}));
 
-const server = app.listen(port, () => {
-  console.log(`Server is running`);
-});
 
 module.exports = {
   app,
