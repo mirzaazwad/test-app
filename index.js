@@ -1,11 +1,15 @@
 const express = require("express");
-require("dotenv").config();
-
+const mongoose = require('mongoose');
+require('dotenv').config({ path: './config.env' });
+const connectDB = require("./config/db");
 const app = express();
 const port = process.env.PORT || 5000;
 
+
+connectDB();
+
 app.get("/", (req, res) => {
-  res.send("Ken KAAJ KORTE something 🤧");
+  res.send("KAAJ KORTEse something 🤧");
 });
 
 app.get("/hello", (req, res) => {
