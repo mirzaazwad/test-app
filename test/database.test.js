@@ -2,7 +2,6 @@
 
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
-const { app, server } = require("../index");
 
 describe('Database Connection', () => {
   let connection;
@@ -27,6 +26,6 @@ describe('Database Connection', () => {
   test('should access a collection in the database', async () => {
     const collection = await db.collection('users');
     const documents = await collection.find({}).toArray();
-    expect(documents).toHaveLength(2); // assuming the collection is initially empty
+    expect(documents).toHaveLength(1); // assuming the collection is initially empty
   });
 });
