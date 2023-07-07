@@ -1,15 +1,12 @@
 //For Register Page
 const registerView = (req, res) => {
-    res.render("register", {
-    } );
-}
-// For View 
+  res.render("register", {});
+};
+// For View
 const loginView = (req, res) => {
-
-    res.render("login", {
-    } );
-}
-module.exports =  {
-    registerView,
-    loginView
+  res.render("login", {});
+};
+module.exports = {
+  registerView,
+  loginView,
 };
