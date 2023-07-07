@@ -13,10 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: sudo apt-get update && apt-get install docker-compose -y
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get remove docker-compose
+          sudo apt-get update
+          sudo apt-get install -y curl
+          sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
 
       - name: Deploy to VM
         run: |
+          docker-compose --version
           docker-compose down -v
           docker-compose up -d --build
