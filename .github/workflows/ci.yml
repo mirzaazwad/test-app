@@ -26,6 +26,6 @@ jobs:
       - name: Set up environment variables
         run: echo "MONGO_URI=${{ vars.MONGO_URI }}" >> $GITHUB_ENV
 
-      - name: Run testss
+      - name: Run tests
         run: npm run test
       
