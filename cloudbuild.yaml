@@ -10,6 +10,9 @@ steps:
     args: ['push', 
            'gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$SHORT_SHA']
 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['beta','run','deloy', 'team-nan-9620011412001','--region=global (non-regional)','--platform=managed','--image=gcr.io/team-nan-9620011412001/github.com/mirzaazwad/test-app:$SHORT_SHA']
+
   # Entrypoint, timeout and environment variables
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
